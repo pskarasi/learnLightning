@@ -1,0 +1,23 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    
+    <aura:attribute name="ConRecord" type="Object"/>
+    <aura:attribute name="ConRecordFields" type="Object"/>
+    <aura:attribute name="ConRecordError" type="String"/>
+    
+    <force:recordData aura:id="ConRec"
+                      recordId="{!v.recordId}"
+                      layoutType="FULL"
+                      fields="Birthdate"
+                      targetFields="{!v.ConRecordFields}"
+                      targetError="{!v.ConRecordError}"
+                      />
+    {!v.recordId}
+    <div class="slds-p-around_small">
+        <lightning:card iconName="standard:contact" title="{!v.ConRecordFields.FirstName}" >
+            <p><lightning:formattedText label="Last Name" title="Last Name" value="{!v.ConRecordFields.LastName}"/></p>
+            <p><lightning:formattedDateTime value="{!v.ConRecordFields.Birthdate}"/></p>
+            <p><lightning:formattedText title="Last Name" value="{!v.ConRecordFields.LastName}"/></p>
+        </lightning:card>
+    </div>
+    
+</aura:component>

@@ -1,0 +1,6 @@
+<aura:component >
+    <aura:attribute name="cmpMessage2" type="string"/>
+    <aura:handler event="c:mytestEvent" action="{!c.doHandle}"/>
+    
+    Event Handled By Component3 &nbsp;&nbsp; {!v.cmpMessage2}
+</aura:component>

@@ -1,0 +1,7 @@
+<aura:component >
+    <aura:registerEvent name="testEvent" type="c:mytestEvent"/>
+    <aura:attribute name="message" type="string"/>
+    <div class="slds-p-around_small">
+        <lightning:button name="fireE" label="Fire Event" onclick="{!c.doFire}"/>
+    </div>
+</aura:component>

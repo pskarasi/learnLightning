@@ -1,0 +1,5 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global"> >
+	<aura:attribute name="oRecord" type="sObject" />
+    <aura:attribute name="IconName" type="string"/> 
+    <aura:registerEvent name="oSelectedRecordEvent" type="c:newsearchEvent"/>
+</aura:component>

@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="Event template">
+    <aura:attribute name="beerRecord" type="Beer__c"/>
+    <aura:attribute name="orderQuantity" type="Integer"/>
+</aura:event>

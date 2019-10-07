@@ -1,0 +1,26 @@
+<aura:component >
+    <aura:handler name="addToCartEvent" event="c:AddBeerToCartEvent" action="{!c.addToCartList}"/>
+    <aura:attribute name="beerOrderList" type="Object"/>
+    <aura:attribute name="beerOrderRec" type="Beer_Order__c"/>
+    <div class="slds-p-around_small">
+        <aura:iteration items="{!v.beerOrderList}" var="beer" indexVar="index">
+        	<div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_1-of-4">
+                    {!beer.Name}
+                </div>
+                <div class="slds-col slds-size_1-of-4">
+                    {!beer.Ordered_Quantity__c}
+                </div>
+                <div class="slds-col slds-size_1-of-4">
+                    {!beer.Total_Price__c}
+                </div>
+				<div class="slds-col slds-size_1-of-4">
+                    {!beer.Phone} &nbsp;&nbsp;
+                    <a href="JavaScript:void(0);" id="{!index}" onclick="{!c.removeRecord}"> Remove </a>
+                    &nbsp;&nbsp;
+                    <a href="JavaScript:void(0);" id="{!index}" onclick="{!c.editRecord}"> Edit </a>
+                </div>
+            </div> 
+        </aura:iteration>
+    </div>
+</aura:component>

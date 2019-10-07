@@ -1,0 +1,29 @@
+<aura:component controller="ApexCartController" implements="lightning:isUrlAddressable,force:appHostable,flexipage:availableforallpagetypes" >
+    <aura:registerEvent name="UpdateCartItemCount" type="c:UpdateCartItemCount"/>
+
+    <c:CallApexServiceComponent aura:id="service"/>
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <lightning:navigation aura:id="navigation"/>
+    <aura:attribute name="quantity" type="integer" default="1"/>
+    <aura:attribute name="cartRec" type="Cart__c" default="{'sobjectType' : 'Cart__c',
+                                                           'Beer__c': '',
+                                                           'Order_Quantity__c': ''}"/>
+    <aura:attribute name="beerRec" type="Beer__c"/>
+  
+    <!--aura:handler name="init" value="{!this}" action="{!c.doInit}"/>-->
+    <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning:formattedText value="{!v.beerRec.Name}"/>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning:input aura:id="bOrder" name="quantity" 
+                                     type="Integer" 
+                                     required="true" 
+                                     label="Quantity" 
+                                     value="{!v.quantity}"/> &nbsp;&nbsp;&nbsp;
+                    
+                    <a href="JavaScript:void(0);" id="{!index}" onclick="{!c.addRecord}"> ADD </a>
+                </div>
+    </div> 
+    
+</aura:component>

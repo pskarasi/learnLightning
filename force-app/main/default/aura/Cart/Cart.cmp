@@ -1,0 +1,14 @@
+<aura:component controller="ApexCartController" implements="lightning:isUrlAddressable,force:appHostable,flexipage:availableforallpagetypes" access="global" >
+    <aura:attribute name="itemCount" type="integer"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="c:UpdateCartItemCount" action="{!c.handleItemCountEvent}"/>
+    
+    <lightning:navigation aura:id="navigation"/>
+    <lightning:layout>
+        <lightning:layOutitem>
+            <lightning:icon iconName="utility:cart" size="large" onclick="{!c.goToCart}">
+            </lightning:icon>
+            <span style="font-size: 1.1rem;"> {!v.itemCount}</span>
+        </lightning:layOutitem>
+    </lightning:layout>
+</aura:component>

@@ -1,0 +1,15 @@
+<aura:component >
+    <aura:attribute name="Whom" type="string" default="SFDCPanther" access="Public"/>
+    <aura:attribute name="message" type="string" default="" access="Public"/>
+    <aura:attribute name="Age" type="integer" default="24" access="Private"/>
+    <aura:attribute name="contactObj" type="Contact" access="Public"/>
+    <aura:attribute name="Colors" type="String[]" default="['red', 'blue', 'green']"/>
+    <aura:attribute name="ColorsList" type="List" default="['red', 'blue', 'green']"/>
+    <aura:attribute name="ColorsSet" type="Set" default="['red', 'blue', 'green']"/>
+    <lightning:input aura:id="testName" label=" Enter Name "/>
+    <lightning:input aura:id="testAge" label=" Enter Age "/>
+    
+    <br/>
+    <lightning:button value="Submit" label="Save Record" onclick="{!c.onClickAction}"/>
+    <div class="red"> {!v.message} </div>
+</aura:component>

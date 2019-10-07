@@ -1,0 +1,11 @@
+<aura:component >
+    
+    <aura:handler name="change" value="{!v.test}" action="{!c.doHandleChange}"/>
+    <aura:registerEvent name="aeEvent" type="c:aeEvent"/>
+    <aura:attribute name="test" type="String" default="testingValue Changed"/>
+    <lightning:button name="changeValue" label="Change Value" onclick="{!c.changeValue}"/>  
+    <br/><br/>
+    <div>
+        &nbsp;     		&nbsp;{!v.test}
+    </div>
+</aura:component>

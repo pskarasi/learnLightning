@@ -1,0 +1,86 @@
+<aura:component implements="lightning:isUrlAddressable,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <lightning:navigation aura:id="navigation"/>
+    <aura:attribute name="beerId" type="string"/>
+    <aura:attribute name="totalPrice" type="integer" default="0"/>
+    <aura:attribute name="beerName" type="string"/>
+    <aura:attribute name="beerO" type="object"/>
+    <aura:attribute name="beerORec" type="object"/>
+    <aura:attribute name="OrderRecordError" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <force:recordData aura:id="createBeerOrder"  
+                      layoutType="FULL"
+                      targetRecord = "{!v.beerO}"
+                      targetFields = "{!v.beerORec}"
+                      targetError =  "{!v.OrderRecordError}"
+                      />
+    <aura:attribute name="beer" type="object"/>
+    <aura:attribute name="beerRec" type="object"/>
+    <aura:attribute name="beerRecordError" type="String"/>
+    <force:recordData aura:id="recordViewer"
+                      recordId = "{!v.beerId}"
+                      layoutType="FULL"
+                      mode="VIEW"
+                      targetRecord = "{!v.beer}"
+                      targetFields = "{!v.beerRec}"
+                      targetError =  "{!v.beerRecordError}"/>
+    <div>
+    <div class="slds-p-around_small">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                <lightning:input aura:id="bOrder" name="quant" type="Integer" label="Order Quantity" required="true"
+                                 value="{!v.beerORec.Ordered_Quantity__c}" onchange="{!c.updatePrice}"/>
+            </div>
+            
+            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                <lightning:input name="beerName" readonly="true" value="{!v.beerRec.Name}" label="Beer Name"/>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                <lightning:inputAddress aura:id="bOrder"
+                                        addressLabel="Shipping Address"
+                                        streetLabel="Street"
+                                        cityLabel="City"
+                                        countryLabel="Country"
+                                        provinceLabel="State/Province"
+                                        postalCodeLabel="PostalCode"
+                                        street="{!v.beerORec.New_Ship_To_Street__c}"
+                                        city="{!v.beerORec.New_Ship_To_City__c}"
+                                        country="{!v.beerORec.New_Ship_To_Country__c}"
+                                        province="{!v.beerORec.New_Ship_To_State__c}"
+                                        postalCode="{!v.beerORec.New_Ship_To_Postal__c}"
+                                        required="true"
+                                        fieldLevelHelp="Add a shipping address"
+                                        />
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                <lightning:inputAddress aura:id="bOrder"
+                                        addressLabel="Billing Address"
+                                        streetLabel="Street"
+                                        cityLabel="City"
+                                        countryLabel="Country"
+                                        provinceLabel="State/Province"
+                                        postalCodeLabel="PostalCode"
+                                        street="{!if(v.beerORec.IsBillingSaveAsShipping__c, v.beerORec.New_Ship_To_Street__c, v.beerORec.New_Bill_To_Street__c)}"
+                                        city="{!if(v.beerORec.IsBillingSaveAsShipping__c, v.beerORec.New_Ship_To_City__c, v.beerORec.New_Bill_To_City__c)}"
+                                        country="{!if(v.beerORec.IsBillingSaveAsShipping__c, v.beerORec.New_Ship_To_Country__c, v.beerORec.New_Bill_To_Country__c)}"
+                                        province="{!if(v.beerORec.IsBillingSaveAsShipping__c, v.beerORec.New_Ship_To_State__c, v.beerORec.New_Bill_To_State__c)}"
+                                        postalCode="{!if(v.beerORec.IsBillingSaveAsShipping__c, v.beerORec.New_Ship_To_Postal__c, v.beerORec.New_Bill_To_Postal__c)}"
+                                        required="{!!v.beerORec.IsBillingSaveAsShipping__c}"
+                                        readonly="{!v.beerORec.IsBillingSaveAsShipping__c}"
+                                        fieldLevelHelp="Add a Billing address"
+                                        />
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                <lightning:input type="checkbox" name="AddCheck" label="Is Billing Address same as Shipping"
+                                 checked="{!v.beerORec.IsBillingSaveAsShipping__c}"
+                                 value="{!v.beerORec.IsBillingSaveAsShipping__c}"/>
+            </div> 
+            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                <lightning:input type="number" name="totalPrice" label="Total Price"
+                                 value="{!v.beerORec.Total_Price__c}" readonly="true"/>
+            </div> 
+        </div>
+        <lightning:button variant="brand" label="Place Order" onclick="{!c.handleSubmit}"/>
+    </div>
+    </div>
+</aura:component>

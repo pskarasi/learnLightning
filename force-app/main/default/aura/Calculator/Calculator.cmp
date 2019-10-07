@@ -1,0 +1,20 @@
+<aura:component >
+    <aura:attribute name="input1" type="integer" required="true" default="0" description="input 1"/>
+    <aura:attribute name="input2" type="integer" required="true" default="0" description="input 2"/>
+    <aura:attribute name="result" type="integer" required="true" default="" description="Result"/>
+    <div class="slds-align_absolute-center" style="height:5rem">
+    	<lightning:input type="number" aura:id="input1" value="{!v.input1}" label="Number 1"/>
+    	<lightning:input type="number" aura:id="input2" value="{!v.input2}" label="Number 2"/>
+    </div>
+    <br/>
+    
+    <div class="slds-align_absolute-center" style="height:5rem"> Result is {!v.result} </div>
+        <br/>
+    <div class="slds-align_absolute-center" style="height:5rem">
+        <Lightning:button variant="brand" label="Add" 		onclick="{!c.doAdd}"/>
+        <Lightning:button variant="brand" label="Substract" onclick="{!c.doSubstract}"/>
+        <Lightning:button variant="brand" label="Multiply" 	onclick="{!c.doMultiply}"/>
+        <Lightning:button variant="brand" label="Divide" 	onclick="{!c.doDivide}"/>
+    </div>
+        
+</aura:component>

@@ -1,0 +1,23 @@
+<aura:component implements="lightning:isUrlAddressable,force:appHostable,flexipage:availableforallpagetypes" >
+    <aura:registerEvent name="addToCartEvent" type="c:AddBeerToCartEvent"/>
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <lightning:navigation aura:id="navigation"/>
+    <aura:attribute name="beerId" type="string"/>
+    <aura:attribute name="beerRecord" type="object"/>
+    <aura:attribute name="recordLoadError" type="string"/>
+    <aura:attribute name="orderQuantity" type="Integer"/>
+    <div class="slds-p-around_small">
+        <lightning:recordForm recordId="{!v.beerId}"    
+                              objectApiName="Beer__c"
+                              layoutType="Full"
+                              columns="2"
+                              mode="readonly" />
+        
+    </div>
+	<div class="slds-col slds-size_1-of-3 slds-p-around_small">
+        <lightning:button variant="brand" name="orderNow" label="Order Now" onclick="{!c.doOrder}"/>
+        <lightning:input type="number" label="Order Quantity" value="{!v.orderQuantity}"/>
+        <lightning:button variant="brand" name="addToCart" label="Add To Cart" onclick="{!c.doAddToCart}"/>
+    </div>
+
+    </aura:component>

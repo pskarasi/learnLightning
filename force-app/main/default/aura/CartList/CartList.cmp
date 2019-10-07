@@ -1,0 +1,50 @@
+<aura:component controller="ApexCartController" implements="lightning:isUrlAddressable,force:appHostable,flexipage:availableforallpagetypes" access="global" >
+    <c:CallApexServiceComponent aura:id="service"/>
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <lightning:navigation aura:id="navigation"/>
+    
+    <aura:attribute name="cartList" type="object"/>
+    <aura:attribute name="TagLine" type="string"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <c.HeaderComponent TagLine="{!v.TagLine}"/>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_2-of-3 slds-p-around_small">
+            <aura:iteration items="{!v.cartList}" var="cart" indexVar="index">
+                <lightning:card  title="{!cart.Name}" iconName="custom:custom48">
+                    <p class="slds-p-horizontal_small">
+                        <div class="slds-grid slds-gutters">
+                            <div class="slds-col slds-size_1-of-3">
+                                <img src="{!$Resource.BeerImg}" height="42" width="42"></img>
+                            </div>
+                            <div class="slds-col slds-size_2-of-3">
+                                {!cart.Beer__r.Name} <br/>
+                                {!cart.Order_Quantity__c} <br/>
+                                {!cart.Price__c};                
+                            </div>
+                        </div>
+                    </p>
+                    <aura:set attribute="footer">
+                        <a href="JavaScript:void(0);" id="{!index}" onclick="{!c.removeRecord}"> Remove </a> &nbsp;&nbsp;/&nbsp;&nbsp;
+                        <a href="JavaScript:void(0);" id="{!index}" onclick="{!c.removeRecord}"> Save For Later </a>
+                    </aura:set>
+                </lightning:card>
+                
+                
+            </aura:iteration>
+        </div> 
+        <div class="slds-col slds-size_1-of-3 slds-p-around_small">
+            <lightning:card  title="Price Details" iconName="custom:custom48">
+                Total Items :	0 &nbsp; &nbsp;
+                Total Price :	0
+                <aura:set attribute="footer">
+                    total payble
+                </aura:set>
+            </lightning:card>
+            <div class="slds-p-around_large">
+                <lightning:button label="GoBack To Beer Explorer" variant="brand" onclick="{!c.goBackToHome}"/>
+            </div>
+            
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,36 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasrecordId" access="global" >
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <lightning:button variant="brand" name="modal" label="Show Modal" onclick="{!c.handleShowModal}"/>
+    <br/>
+    
+    <lightning:navigation aura:id="navigation"/>
+    <lightning:button label="NavigateKL" variant="brand" onclick="{!c.navigate}"/>
+    
+    <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Account">
+        <div class="slds-box">
+            <div class="mypopover" onmouseover="{!c.handleShowPopover}">
+                <lightning:outputField fieldName="Name"/>
+            </div>
+            <br/>
+            <lightning:outputField fieldName="Industry"/>
+        </div>
+    </lightning:recordViewForm>
+    <lightning:recordEditForm
+                              onload="{!c.handleLoad}"
+                              onsubmit="{!c.handleSubmit}"
+                              onsuccess="{!c.handleSuccess}"
+                              recordId="{!v.recordId}"
+                              objectApiName="Account">
+        <!-- the messages component is for error messages -->
+        <lightning:messages />
+        
+        <lightning:inputField fieldName="Name" />
+        <lightning:inputField fieldName="Industry" />
+        
+        <div class="slds-m-top_medium">
+            <lightning:button variant="brand" type="submit" name="save" label="Save" />
+        </div>
+    </lightning:recordEditForm>
+    <lightning:button label="Create New Button" value="Create New Button" onclick="{!c.createButton}"/>
+    {!v.body}
+</aura:component>
