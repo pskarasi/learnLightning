@@ -8,6 +8,7 @@
     <aura:attribute name="OrderRecordError" type="String"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:attribute name="mttest" type="string" default=""/>
+    <aura:attribute name="mttest2" type="string" default=""/>
     <force:recordData aura:id="createBeerOrder"  
                       layoutType="FULL"
                       targetRecord = "{!v.beerO}"
