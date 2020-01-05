@@ -16,7 +16,8 @@
                       targetError =  "{!v.OrderRecordError}"
                       />
     <aura:attribute name="beer" type="object"/>
-    <aura:attribute name="beerRec" type="object"/>
+    <aura:at
+    tribute name="beerRec" type="object"/>
     <aura:attribute name="beerRecordError" type="String"/>
     <force:recordData aura:id="recordViewer"
                       recordId = "{!v.beerId}"
