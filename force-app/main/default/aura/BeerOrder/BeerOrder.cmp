@@ -15,6 +15,7 @@
                       targetFields = "{!v.beerORec}"
                       targetError =  "{!v.OrderRecordError}"
                       />
+                      <!--Hello-->
     <aura:attribute name="beer" type="object"/>
     <aura:at
     tribute name="beerRec" type="object"/>
